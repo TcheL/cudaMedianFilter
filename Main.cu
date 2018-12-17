@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "MedianFilter.h"
+#include "kernelMedianFilter.cu"
 
 #define BNX 16
 #define BNY 16

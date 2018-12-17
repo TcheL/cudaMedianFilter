@@ -12,7 +12,7 @@ Tche LIU, seistche@gmail.com, USTC
 
 ## Methodology
 
-Firstly, there are two way to calculate the median of filtering window in the program, respectively corresponding to the two functions `medianBubble` and `medianNoSort` in the header file _MedianFilter.h_. The former [Bubble] uses the incomplete bubble sorting method to find the meidan, while the latter [NoSort] does not sort the input array (To be honest, I do not know what the name of the algorithm is, and will be grateful to you if you tell me the answer).
+Firstly, there are two way to calculate the median of filtering window in the program, respectively corresponding to the two functions `medianBubble` and `medianNoSort` in the file _kernelMedianFilter.cu_. The former [Bubble] uses the incomplete bubble sorting method to find the meidan, while the latter [NoSort] does not sort the input array (To be honest, I do not know what the name of the latter algorithm is, and will be grateful to you if you tell me the answer).
 
 Besides, according to __Boundary issues__ of [the page](https://en.wikipedia.org/wiki/Median_filter), there are three schemes to handle missing window entries at the boundaries:
 
@@ -28,7 +28,7 @@ Finally, due to  [JackOLantern](https://stackoverflow.com/users/1886641/jackolan
 
 ## Compile
 
-There are some different macros for these different methods, that is, for these different  functions in the file _MedianFilter.h_:
+There are some different macros for these different methods, that is, for these different  functions in the file _kernelMedianFilter.cu_:
 
 |    Macro    |      Function       |
 | :---------: | :-----------------: |
@@ -39,14 +39,14 @@ There are some different macros for these different methods, that is, for these 
 | __Shrink__  | kernelFilterShrink  |
 |  __Zero__   |  kernelFilterZero   |
 
-And for extendibility, the another macro __HSM__ is provided for half of filtering window length (FWL), i. e., $HSM = (FWL - 1)/2$.
+And for extendibility, the another macro __HSM__ is provided as half of filtering window length (FWL), i. e., $HSM = (FWL - 1)/2$.
 
 We can arbitrarily combine Bubble/NoSort for the median calculation with Discard/Extend/Shrink/Zero for the boundary issue.
 
  For example, if we want to filter by the former way of the median calculation, by the first scheme of the boundary issue, and with a 9x9 window, the program can be compiled with:
 
 ```shell
-nvcc MedianFilter.cu -DBubble -DDiscard -DHSM=4 -o filter
+nvcc Main.cu -DBubble -DDiscard -DHSM=4 -o filter
 ```
 
 And note the setting $HSM=(9-1)/2=4$.
