@@ -6,7 +6,7 @@ An example for cuda median filter.
 
 [The MIT License](http://tchel.mit-license.org/)
 
-## Anthor
+## Author
 
 Tche LIU, seistche@gmail.com, USTC
 
@@ -83,7 +83,7 @@ The elapsed times for different combinations are shown as follows:
 
 ![TimeChart](figures/TimeChart.png)
 
-And for clarity, the result based on the log time axis is as:
+And for clarity, the result based on the logarithmic time axis is as:
 
 ![LogTimeChart](figures/LogTimeChart.png)
 
